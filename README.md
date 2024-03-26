@@ -1,0 +1,2 @@
+# solomonProject
+Solomon Project.
