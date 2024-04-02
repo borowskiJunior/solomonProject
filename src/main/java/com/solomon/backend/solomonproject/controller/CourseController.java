@@ -2,7 +2,6 @@ package com.solomon.backend.solomonproject.controller;
 
 import com.solomon.backend.solomonproject.model.Course;
 import com.solomon.backend.solomonproject.service.CourseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
