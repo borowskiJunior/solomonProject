@@ -1,2 +1,4 @@
-package com.solomon.backend.solomonproject.service;public interface LessonsService {
+package com.solomon.backend.solomonproject.service;
+
+public interface LessonsService {
 }

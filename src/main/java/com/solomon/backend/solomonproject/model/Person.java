@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author Max Borowski
  */
@@ -24,6 +26,8 @@ public class Person {
     private String name;
     @Setter
     private String role;
+
+//    private List<Course> courses;
 
     public Person(String name, String role) {
         this.name = name;
