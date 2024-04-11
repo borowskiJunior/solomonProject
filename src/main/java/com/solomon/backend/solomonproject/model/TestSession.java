@@ -23,7 +23,7 @@ public class TestSession {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Person person;
 
     @OneToMany(mappedBy = "testSession")

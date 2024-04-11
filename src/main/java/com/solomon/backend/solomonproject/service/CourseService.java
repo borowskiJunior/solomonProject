@@ -13,4 +13,6 @@ public interface CourseService {
     Course createCourse(Course course);
     void deleteCourse(Long id);
     Course updateCourse(Long id, Course course);
+
+    Course updateSomeFieldsCourse(Long id, Course course);
 }

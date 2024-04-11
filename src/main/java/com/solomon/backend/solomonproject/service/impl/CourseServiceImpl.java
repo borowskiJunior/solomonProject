@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Max Borowski
@@ -45,6 +46,18 @@ public class CourseServiceImpl implements CourseService {
         currentCourse.setPrice(course.getPrice());
         currentCourse.setTitle(course.getTitle());
         currentCourse.setDescription(course.getDescription());
+
+        return courseRepository.save(currentCourse);
+    }
+
+    @Override
+    public Course updateSomeFieldsCourse(Long id, Course course) {
+        Course currentCourse = courseRepository.getCourseById(id);
+
+        Optional.ofNullable(course.getAuthor()).ifPresent(currentCourse::setAuthor);
+        Optional.ofNullable(course.getTitle()).ifPresent(currentCourse::setTitle);
+        Optional.ofNullable(course.getDescription()).ifPresent(currentCourse::setDescription);
+        Optional.ofNullable(course.getPrice()).ifPresent(currentCourse::setPrice);
 
         return courseRepository.save(currentCourse);
     }

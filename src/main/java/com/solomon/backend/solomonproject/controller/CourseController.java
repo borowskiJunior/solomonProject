@@ -10,7 +10,7 @@ import java.util.List;
  * @author Max Borowski
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/v1")
 public class CourseController {
     private final CourseService courseService;
 
@@ -41,5 +41,10 @@ public class CourseController {
     @PutMapping("/course/{id}")
     public Course putCourse(@PathVariable("id") Long id, @RequestBody Course course){
         return courseService.updateCourse(id, course);
+    }
+
+    @PatchMapping("/course/{id}")
+    public Course patchCourse(@PathVariable("id") Long id, @RequestBody Course course){
+        return courseService.updateSomeFieldsCourse(id, course);
     }
 }
