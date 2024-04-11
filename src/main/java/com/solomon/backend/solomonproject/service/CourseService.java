@@ -10,7 +10,7 @@ import java.util.List;
 public interface CourseService {
     List<Course> getCourses();
     Course getCourse(Long id);
-    Course postCourse(Course course);
+    Course createCourse(Course course);
     void deleteCourse(Long id);
-    Course putCourse(Long id, Course course);
+    Course updateCourse(Long id, Course course);
 }

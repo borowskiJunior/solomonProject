@@ -30,7 +30,7 @@ public class CourseController {
 
     @PostMapping("/course")
     public Course postCourse(@RequestBody Course course){
-        return courseService.postCourse(course);
+        return courseService.createCourse(course);
     }
 
     @DeleteMapping("/course/{id}")
@@ -40,6 +40,6 @@ public class CourseController {
 
     @PutMapping("/course/{id}")
     public Course putCourse(@PathVariable("id") Long id, @RequestBody Course course){
-        return courseService.putCourse(id, course);
+        return courseService.updateCourse(id, course);
     }
 }

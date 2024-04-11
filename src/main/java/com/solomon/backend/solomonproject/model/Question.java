@@ -19,14 +19,24 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Setter
     private String quest;
+
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
     private Test test;
+
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
 
     @OneToMany(mappedBy = "question")
     private List<Result> results;
+
+    public Question(String quest, Test test, List<Answer> answers, List<Result> results) {
+        this.quest = quest;
+        this.test = test;
+        this.answers = answers;
+        this.results = results;
+    }
 }

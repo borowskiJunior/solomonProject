@@ -17,8 +17,13 @@ public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Setter
+    private String ordinalNumber;
+
     @Setter
     private String name;
+
     @Setter
     private String text;
 
@@ -29,8 +34,11 @@ public class Lesson {
     @JoinColumn(name = "chapter_id", referencedColumnName = "id")
     private Chapter chapter;
 
-    public Lesson(String name, String text) {
+    public Lesson(String ordinalNumber, String name, String text, Test test, Chapter chapter) {
+        this.ordinalNumber = ordinalNumber;
         this.name = name;
         this.text = text;
+        this.test = test;
+        this.chapter = chapter;
     }
 }

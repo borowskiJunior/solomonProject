@@ -31,4 +31,10 @@ public class Result {
 
     @Setter
     private String resultValue;
+
+    public Result(Question question, TestSession testSession, String resultValue) {
+        this.question = question;
+        this.testSession = testSession;
+        this.resultValue = resultValue;
+    }
 }

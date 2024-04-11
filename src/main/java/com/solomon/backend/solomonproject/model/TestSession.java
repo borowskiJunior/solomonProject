@@ -28,4 +28,9 @@ public class TestSession {
 
     @OneToMany(mappedBy = "testSession")
     private List<Result> results;
+
+    public TestSession(Person person, List<Result> results) {
+        this.person = person;
+        this.results = results;
+    }
 }

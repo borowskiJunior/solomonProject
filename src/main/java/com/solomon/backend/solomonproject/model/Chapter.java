@@ -24,7 +24,11 @@ public class Chapter {
     private Long id;
 
     @Setter
+    private String ordinalNumber;
+
+    @Setter
     private String name;
+
     @Setter
     private String description;
 
@@ -34,4 +38,12 @@ public class Chapter {
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     private Course course;
+
+    public Chapter(String ordinalNumber, String name, String description, List<Lesson> lessons, Course course) {
+        this.ordinalNumber = ordinalNumber;
+        this.name = name;
+        this.description = description;
+        this.lessons = lessons;
+        this.course = course;
+    }
 }

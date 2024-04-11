@@ -22,13 +22,17 @@ public class Test {
 
     @Setter
     private String name;
+
     @OneToOne()
     @JoinColumn(name = "lesson_id", referencedColumnName = "id")
     private Lesson lesson;
 
     @OneToMany(mappedBy = "test")
     private List<Question> questions;
-    public Test(String name) {
+
+    public Test(String name, Lesson lesson, List<Question> questions) {
         this.name = name;
+        this.lesson = lesson;
+        this.questions = questions;
     }
 }

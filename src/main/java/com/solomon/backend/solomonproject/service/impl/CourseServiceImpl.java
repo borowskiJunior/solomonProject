@@ -27,7 +27,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course postCourse(Course course){
+    public Course createCourse(Course course){
         return courseRepository.save(course);
     }
 
@@ -38,7 +38,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional
-    public Course putCourse(Long id, Course course) {
+    public Course updateCourse(Long id, Course course) {
         Course currentCourse = courseRepository.getCourseById(id);
 
         currentCourse.setAuthor(course.getAuthor());
