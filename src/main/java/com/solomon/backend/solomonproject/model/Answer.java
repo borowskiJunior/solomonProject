@@ -24,4 +24,6 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
+
+
 }

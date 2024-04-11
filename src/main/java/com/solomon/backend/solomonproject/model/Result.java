@@ -7,28 +7,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
+/**
+ * @author Max Borowski
+ */
 @Entity
-@Table(name = "Test")
+@Table(name = "Result")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Test {
+public class Result {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
-    private String name;
-    @OneToOne()
-    @JoinColumn(name = "lesson_id", referencedColumnName = "id")
-    private Lesson lesson;
+    @ManyToOne
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
+    private Question question;
 
-    @OneToMany(mappedBy = "test")
-    private List<Question> questions;
-    public Test(String name) {
-        this.name = name;
-    }
+    @ManyToOne
+    @JoinColumn(name = "session_id", referencedColumnName = "id")
+    private TestSession testSession;
+
+    @Setter
+    private String resultValue;
 }

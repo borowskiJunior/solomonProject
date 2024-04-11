@@ -27,7 +27,8 @@ public class Person {
     @Setter
     private String role;
 
-//    private List<Course> courses;
+    @OneToMany(mappedBy = "person")
+    private List<TestSession> testSessions;
 
     public Person(String name, String role) {
         this.name = name;

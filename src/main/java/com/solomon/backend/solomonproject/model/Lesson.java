@@ -25,6 +25,10 @@ public class Lesson {
     @OneToOne(mappedBy = "lesson")
     private Test test;
 
+    @ManyToOne
+    @JoinColumn(name = "chapter_id", referencedColumnName = "id")
+    private Chapter chapter;
+
     public Lesson(String name, String text) {
         this.name = name;
         this.text = text;

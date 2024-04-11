@@ -13,31 +13,25 @@ import java.util.List;
  * @author Max Borowski
  */
 @Entity
-@Table(name = "Course")
+@Table(name = "Chapter")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Course {
+public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Setter
-    private String title;
+    private String name;
     @Setter
     private String description;
-    @Setter
-    private String author;
-    @Setter
-    private Integer price;
 
-    @OneToMany(mappedBy = "course")
-    private List<Chapter> chapters;
+    @OneToMany(mappedBy = "chapter")
+    private List<Lesson> lessons;
 
-    public Course(String title, String description, String author, Integer price) {
-        this.title = title;
-        this.description = description;
-        this.author = author;
-        this.price = price;
-    }
+    @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    private Course course;
 }
