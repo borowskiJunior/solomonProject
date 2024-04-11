@@ -51,6 +51,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public Course updateSomeFieldsCourse(Long id, Course course) {
         Course currentCourse = courseRepository.getCourseById(id);
 
