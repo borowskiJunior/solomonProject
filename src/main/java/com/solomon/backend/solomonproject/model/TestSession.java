@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -28,6 +29,13 @@ public class TestSession {
 
     @OneToMany(mappedBy = "testSession")
     private List<Result> results;
+
+    //кол-во правильных ответов за весь тест
+    @Setter
+    private int numberOfCorrectAnswers;
+    //кол-во неправильных ответов
+    @Setter
+    private int numberOfIncorrectAnswers;
 
     public TestSession(Person person, List<Result> results) {
         this.person = person;

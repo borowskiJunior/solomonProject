@@ -30,9 +30,7 @@ public class Test {
     @OneToMany(mappedBy = "test")
     private List<Question> questions;
 
-    public Test(String name, Lesson lesson, List<Question> questions) {
+    public Test(String name) {
         this.name = name;
-        this.lesson = lesson;
-        this.questions = questions;
     }
 }

@@ -19,22 +19,27 @@ import lombok.Setter;
 public class Result {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "question_id", referencedColumnName = "id")
-    private Question question;
 
     @ManyToOne
     @JoinColumn(name = "session_id", referencedColumnName = "id")
     private TestSession testSession;
 
     @Setter
-    private String resultValue;
+    private int correctResultValue;
 
-    public Result(Question question, TestSession testSession, String resultValue) {
-        this.question = question;
-        this.testSession = testSession;
-        this.resultValue = resultValue;
+    @Setter
+    private int personResultValue;
+
+    @Setter
+    private float procentCorrectResult;
+
+
+    public Result(int correctResultValue, int personResultValue) {
+        this.correctResultValue = correctResultValue;
+        this.personResultValue = personResultValue;
+        this.procentCorrectResult = correctResultValue != 0 ? ((float) personResultValue / correctResultValue * 100) : 0;
     }
+
 }

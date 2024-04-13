@@ -21,6 +21,7 @@ public class Answer {
     private String ans;
     @Setter
     private boolean correct;
+
     @ManyToOne
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
@@ -28,6 +29,5 @@ public class Answer {
     public Answer(String ans, boolean correct, Question question) {
         this.ans = ans;
         this.correct = correct;
-        this.question = question;
     }
 }
