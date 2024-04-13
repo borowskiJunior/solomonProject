@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface QuestionsService {
     List<Question> getQuestions();
     Question getQuestion(Long id);
-    Question saveQuestion(Question question);
+    void saveQuestion(Question question);
     void deleteQuestion(Long id);
     List<Answer> getAnswersByQuestionId(Long id);
 }

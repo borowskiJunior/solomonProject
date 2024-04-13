@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface ResultService {
     List<Result> getResults();
     Result getResult(Long id);
-    Result saveResult(Result result);
+    void saveResult(Result result);
     void deleteResult(Long id);
     void updateResult(Long id, Result updateResult);
 }

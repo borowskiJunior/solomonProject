@@ -18,6 +18,7 @@ import java.util.List;
 public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
     private Long id;
 
     @Setter

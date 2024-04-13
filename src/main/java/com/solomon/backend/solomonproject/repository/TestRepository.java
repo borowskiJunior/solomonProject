@@ -1,4 +1,7 @@
 package com.solomon.backend.solomonproject.repository;
 
-public interface TestRepository {
+import com.solomon.backend.solomonproject.model.Test;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TestRepository extends JpaRepository<Test, Long> {
 }

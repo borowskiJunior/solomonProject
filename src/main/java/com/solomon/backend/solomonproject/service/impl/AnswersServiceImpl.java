@@ -35,8 +35,8 @@ public class AnswersServiceImpl implements AnswersService {
     }
     @Transactional
     @Override
-    public Answer saveAnswer(Answer answer) {
-        return answersRepository.save(answer);
+    public void saveAnswer(Answer answer) {
+        answersRepository.save(answer);
     }
 
     @Transactional

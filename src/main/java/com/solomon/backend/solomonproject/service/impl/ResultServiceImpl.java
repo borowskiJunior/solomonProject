@@ -33,8 +33,8 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     @Transactional
-    public Result saveResult(Result result) {
-        return resultRepository.save(result);
+    public void saveResult(Result result) {
+        resultRepository.save(result);
     }
 
     @Override
