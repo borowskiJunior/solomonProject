@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "Question")
+@Table(name = "Question_list")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,7 +25,7 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
-    private Test test;
+    private Test testId;
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;

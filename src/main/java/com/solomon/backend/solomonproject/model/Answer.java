@@ -7,8 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(name = "Answer")
+@Table(name = "Answer_list")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,7 +28,10 @@ public class Answer {
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
 
-    public Answer(String ans, boolean correct, Question question) {
+    @OneToMany(mappedBy = "answerId")
+    private List<TestSessionAnswer> testSessionAnswer;
+
+    public Answer(String ans, boolean correct) {
         this.ans = ans;
         this.correct = correct;
     }

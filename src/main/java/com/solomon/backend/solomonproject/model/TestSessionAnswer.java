@@ -5,34 +5,23 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.List;
-
-/**
- * @author Max Borowski
- */
 @Entity
-@Table(name = "Person")
+@Table(name = "test_session_answer")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Person {
+public class TestSessionAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter
-    private String name;
-    @Setter
-    private String role;
-
-    @OneToMany(mappedBy = "personId")
-    private List<TestSession> testSessions;
-
-    public Person(String name, String role) {
-        this.name = name;
-        this.role = role;
-    }
-
+    // наверное такое отношение
+    @ManyToOne
+    @JoinColumn(name = "test_session_id", referencedColumnName = "id")
+    private TestSession testSessionId;
+    //тут один ко меногим
+    @ManyToOne
+    @JoinColumn(name = "answer_id", referencedColumnName = "id")
+    private Answer answerId;
 }

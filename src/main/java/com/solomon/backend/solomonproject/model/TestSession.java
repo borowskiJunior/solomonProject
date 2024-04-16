@@ -7,13 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * @author Max Borowski
  */
 @Entity
-@Table(name = "TestSession")
+@Table(name = "test_session")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,20 +26,25 @@ public class TestSession {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Person person;
+    private Person personId;
 
-    @OneToMany(mappedBy = "testSession")
-    private List<Result> results;
+    @ManyToOne
+    @JoinColumn(name = "test_id", referencedColumnName = "id")
+    private Test test;
 
-    //кол-во правильных ответов за весь тест
+    @OneToMany(mappedBy = "testSessionId")
+    private List<TestSessionAnswer> testSessionAnswers;
+
     @Setter
-    private int numberOfCorrectAnswers;
-    //кол-во неправильных ответов
+    private LocalDateTime startTime;
     @Setter
-    private int numberOfIncorrectAnswers;
+    private LocalDateTime finisTime;
+    @Setter
+    private int attemptNumber;
 
-    public TestSession(Person person, List<Result> results) {
-        this.person = person;
-        this.results = results;
+    public TestSession(LocalDateTime startTime, LocalDateTime finisTime, int attemptNumber) {
+        this.startTime = startTime;
+        this.finisTime = finisTime;
+        this.attemptNumber = attemptNumber;
     }
 }

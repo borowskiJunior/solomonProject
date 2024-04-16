@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Duration;
 import java.util.List;
 
 @Entity
@@ -24,14 +25,22 @@ public class Test {
     @Setter
     private String name;
 
+    //мб не Duration
+    @Setter
+    private Duration runTime;
+
     @OneToOne()
     @JoinColumn(name = "lesson_id", referencedColumnName = "id")
     private Lesson lesson;
 
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "testId")
     private List<Question> questions;
 
-    public Test(String name) {
+    @OneToMany(mappedBy = "test")
+    private List<TestSession> testSessions;
+
+    public Test(String name, Duration runTime) {
         this.name = name;
+        this.runTime = runTime;
     }
 }
