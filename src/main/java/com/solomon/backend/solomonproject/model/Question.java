@@ -25,12 +25,14 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
+    @Setter
     private Test testId;
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
 
-    public Question(String quest) {
+    public Question(String quest, Test testId) {
         this.quest = quest;
+        this.testId = testId;
     }
 }

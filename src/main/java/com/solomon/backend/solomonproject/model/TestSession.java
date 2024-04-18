@@ -26,10 +26,12 @@ public class TestSession {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Setter
     private User userId;
 
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
+    @Setter
     private Test test;
 
     @OneToMany(mappedBy = "testSessionId")
@@ -37,12 +39,16 @@ public class TestSession {
 
     @Setter
     private LocalDateTime startTime;
+
     @Setter
     private LocalDateTime finishTime;
+
     @Setter
     private int attemptNumber;
 
-    public TestSession(LocalDateTime startTime, LocalDateTime finishTime, int attemptNumber) {
+    public TestSession(User userId, Test test, LocalDateTime startTime, LocalDateTime finishTime, int attemptNumber) {
+        this.userId = userId;
+        this.test = test;
         this.startTime = startTime;
         this.finishTime = finishTime;
         this.attemptNumber = attemptNumber;

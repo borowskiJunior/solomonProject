@@ -28,15 +28,19 @@ public class Lesson {
     private String text;
 
     @OneToOne(mappedBy = "lesson")
+    @Setter
     private Test test;
 
     @ManyToOne
     @JoinColumn(name = "chapter_id", referencedColumnName = "id")
+    @Setter
     private Chapter chapter;
 
-    public Lesson(String ordinalNumber, String name, String text) {
+    public Lesson(String ordinalNumber, String name, String text, Test test, Chapter chapter) {
         this.ordinalNumber = ordinalNumber;
         this.name = name;
         this.text = text;
+        this.test = test;
+        this.chapter = chapter;
     }
 }

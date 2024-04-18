@@ -33,9 +33,19 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserCourse> userCourses;
 
-    public User(String name, String role) {
+    //временные поля
+    @Setter
+    private String login;
+
+    @Setter
+    private String password;
+    //
+
+
+    public User(String name, String role, String login, String password) {
         this.name = name;
         this.role = role;
+        this.login = login;
+        this.password = password;
     }
-
 }

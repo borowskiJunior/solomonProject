@@ -31,6 +31,7 @@ public class Test {
 
     @OneToOne()
     @JoinColumn(name = "lesson_id", referencedColumnName = "id")
+    @Setter
     private Lesson lesson;
 
     @OneToMany(mappedBy = "testId")
@@ -39,8 +40,9 @@ public class Test {
     @OneToMany(mappedBy = "test")
     private List<TestSession> testSessions;
 
-    public Test(String name, Duration runTime) {
+    public Test(String name, Duration runTime, Lesson lesson) {
         this.name = name;
         this.runTime = runTime;
+        this.lesson = lesson;
     }
 }

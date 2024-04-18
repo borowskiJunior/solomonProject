@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Max Borowski
@@ -22,9 +23,16 @@ public class UserCourse {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Setter
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "id")
+    @Setter
     private Course course;
+
+    public UserCourse(User user, Course course) {
+        this.user = user;
+        this.course = course;
+    }
 }

@@ -19,20 +19,24 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Setter
     private String ans;
+
     @Setter
     private boolean correct;
 
     @ManyToOne
     @JoinColumn(name = "question_id", referencedColumnName = "id")
+    @Setter
     private Question question;
 
     @OneToMany(mappedBy = "answerId")
     private List<TestSessionAnswer> testSessionAnswer;
 
-    public Answer(String ans, boolean correct) {
+    public Answer(String ans, boolean correct, Question question) {
         this.ans = ans;
         this.correct = correct;
+        this.question = question;
     }
 }
