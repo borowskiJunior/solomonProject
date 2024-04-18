@@ -38,6 +38,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Chapter> chapters;
 
+    @OneToMany(mappedBy = "course")
+    private List<UserCourse> userCourses;
+
     public Course(String title, String description, String author, Integer price) {
         this.title = title;
         this.description = description;

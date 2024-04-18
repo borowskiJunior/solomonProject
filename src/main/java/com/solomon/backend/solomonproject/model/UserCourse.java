@@ -5,34 +5,26 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.List;
-
+/**
+ * @author Max Borowski
+ */
 @Entity
-@Table(name = "Answer")
+@Table(name = "user_course")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Answer {
+public class UserCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter
-    private String ans;
-    @Setter
-    private boolean correct;
 
     @ManyToOne
-    @JoinColumn(name = "question_id", referencedColumnName = "id")
-    private Question question;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
-    @OneToMany(mappedBy = "answerId")
-    private List<TestSessionAnswer> testSessionAnswer;
-
-    public Answer(String ans, boolean correct) {
-        this.ans = ans;
-        this.correct = correct;
-    }
+    @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    private Course course;
 }
