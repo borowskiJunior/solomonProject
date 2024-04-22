@@ -7,4 +7,6 @@ import com.solomon.backend.solomonproject.model.User;
  */
 public interface UserService {
     User createUser(User user);
+
+    User loginUser(User user);
 }
