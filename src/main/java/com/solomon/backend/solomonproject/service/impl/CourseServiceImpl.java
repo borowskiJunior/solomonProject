@@ -63,4 +63,9 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.save(currentCourse);
     }
 
+    @Override
+    public List<Course> getCoursesByUserId(Long userId) {
+        return courseRepository.findCoursesByUserId(userId);
+    }
+
 }

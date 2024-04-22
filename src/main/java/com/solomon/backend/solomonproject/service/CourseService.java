@@ -19,4 +19,7 @@ public interface CourseService {
     Course updateCourse(Long id, Course course);
 
     Course updateSomeFieldsCourse(Long id, Course course);
+
+    List<Course> getCoursesByUserId(Long userId);
+
 }
