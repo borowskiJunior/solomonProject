@@ -3,9 +3,11 @@ package com.solomon.backend.solomonproject.service.impl;
 import com.solomon.backend.solomonproject.model.Course;
 import com.solomon.backend.solomonproject.repository.CourseRepository;
 import com.solomon.backend.solomonproject.service.CourseService;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,7 @@ import java.util.Optional;
  */
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     @Override
@@ -28,11 +31,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public Course createCourse(Course course){
         return courseRepository.save(course);
     }
 
     @Override
+    @Transactional
     public void deleteCourse(Long id) {
         courseRepository.deleteById(id);
     }
@@ -65,6 +70,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> getCoursesByUserId(Long userId) {
+        if(courseRepository.findCoursesByUserId(userId).isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There are no courses under this user_id.");
+        }
         return courseRepository.findCoursesByUserId(userId);
     }
 

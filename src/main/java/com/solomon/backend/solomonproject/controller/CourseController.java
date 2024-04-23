@@ -23,7 +23,7 @@ public class CourseController {
         if(userId == null || userId == 0){
             return courseService.getCourses();
         }
-        return courseService.getCoursesByUserId(userId); //ОБРАБОТАЙ ИСКЛЮЧЕНИЯ!
+        return courseService.getCoursesByUserId(userId);
     }
 
     @GetMapping("/course/{id}")
