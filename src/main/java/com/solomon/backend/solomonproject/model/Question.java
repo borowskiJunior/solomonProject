@@ -25,6 +25,7 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
+    @Setter
     private Test testId;
 
     @OneToMany(mappedBy = "question")

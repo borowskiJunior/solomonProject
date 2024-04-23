@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "test_session_answer")
@@ -19,9 +20,11 @@ public class TestSessionAnswer {
     // наверное такое отношение
     @ManyToOne
     @JoinColumn(name = "test_session_id", referencedColumnName = "id")
+    @Setter
     private TestSession testSessionId;
     //тут один ко меногим
     @ManyToOne
     @JoinColumn(name = "answer_id", referencedColumnName = "id")
+    @Setter
     private Answer answerId;
 }

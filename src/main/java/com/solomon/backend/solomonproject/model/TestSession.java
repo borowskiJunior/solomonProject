@@ -26,10 +26,12 @@ public class TestSession {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Setter
     private Person personId;
 
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
+    @Setter
     private Test test;
 
     @OneToMany(mappedBy = "testSessionId")
