@@ -1,6 +1,10 @@
 package com.solomon.backend.solomonproject.service.impl;
 
+import com.solomon.backend.solomonproject.model.Course;
 import com.solomon.backend.solomonproject.model.User;
+import com.solomon.backend.solomonproject.model.UserCourse;
+import com.solomon.backend.solomonproject.repository.CourseRepository;
+import com.solomon.backend.solomonproject.repository.UserCourseRepository;
 import com.solomon.backend.solomonproject.repository.UserRepository;
 import com.solomon.backend.solomonproject.service.UserService;
 import lombok.AllArgsConstructor;
@@ -19,6 +23,8 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final UserCourseRepository userCourseRepository;
+    private final CourseRepository courseRepository;
     @Override
     @Transactional
     public User createUser(User user) {
@@ -37,4 +43,25 @@ public class UserServiceImpl implements UserService {
         }
         return userOptional.get();
     }
+
+    @Override
+    @Transactional
+    public UserCourse enrollUserToCourse(Long userId, Long courseId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        Optional<Course> courseOptional =  courseRepository.findById(courseId);
+        if(userOptional.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong user_id.");
+        }
+        if(courseOptional.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong course_id.");
+        }
+        UserCourse userCourse = new UserCourse(userOptional.get(), courseOptional.get());
+
+        if(userCourseRepository.findByUserIdAndCourseId(userOptional.get().getId(), courseOptional.get().getId())
+                .isPresent()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The user has already enrolled in the course");
+        }
+        return userCourseRepository.save(userCourse);
+    }
+
 }
