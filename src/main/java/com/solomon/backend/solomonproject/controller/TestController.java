@@ -29,7 +29,6 @@ public class TestController {
     @GetMapping()
     public Test getTestByLessonId(@RequestParam(name="lesson_id") Long id){
         return testService.getTestByLessonId(id);
-
     }
 
     @GetMapping("/{id}")

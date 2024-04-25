@@ -2,8 +2,8 @@ package com.solomon.backend.solomonproject.service.impl;
 
 import com.solomon.backend.solomonproject.model.Answer;
 import com.solomon.backend.solomonproject.model.Question;
-import com.solomon.backend.solomonproject.repository.QuestionsRepository;
-import com.solomon.backend.solomonproject.service.QuestionsService;
+import com.solomon.backend.solomonproject.repository.QuestionRepository;
+import com.solomon.backend.solomonproject.service.QuestionService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +18,11 @@ import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
-public class QuestionsServiceImpl implements QuestionsService {
+public class QuestionServiceImpl implements QuestionService {
 
-    private final QuestionsRepository questionsRepository;
+    private final QuestionRepository questionsRepository;
     @Autowired
-    public QuestionsServiceImpl(QuestionsRepository questionsRepository) {
+    public QuestionServiceImpl(QuestionRepository questionsRepository) {
         this.questionsRepository = questionsRepository;
     }
 

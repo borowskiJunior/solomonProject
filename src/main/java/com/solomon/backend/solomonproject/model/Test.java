@@ -33,6 +33,7 @@ public class Test {
     @OneToOne()
     @JoinColumn(name = "lesson_id", referencedColumnName = "id")
     @Setter
+    @JsonIgnore
     private Lesson lesson;
 
     @OneToMany(mappedBy = "test")

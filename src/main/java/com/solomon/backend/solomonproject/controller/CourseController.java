@@ -1,6 +1,8 @@
 package com.solomon.backend.solomonproject.controller;
 
+import com.solomon.backend.solomonproject.model.Chapter;
 import com.solomon.backend.solomonproject.model.Course;
+import com.solomon.backend.solomonproject.service.ChapterService;
 import com.solomon.backend.solomonproject.service.CourseService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +15,11 @@ import java.util.List;
 @RequestMapping("/v1")
 public class CourseController {
     private final CourseService courseService;
+    private final ChapterService chapterService;
 
-    public CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService, ChapterService chapterService) {
         this.courseService = courseService;
+        this.chapterService = chapterService;
     }
 
     @GetMapping("/course")
@@ -49,5 +53,10 @@ public class CourseController {
     @PatchMapping("/course/{id}")
     public Course patchCourse(@PathVariable("id") Long id, @RequestBody Course course){
         return courseService.updateSomeFieldsCourse(id, course);
+    }
+
+    @GetMapping("/course/{id}/chapter")
+    public List<Chapter> getChapters(@PathVariable("id") Long id){
+        return chapterService.getChapters(id);
     }
 }

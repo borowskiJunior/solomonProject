@@ -4,7 +4,7 @@ import com.solomon.backend.solomonproject.model.Answer;
 
 import java.util.List;
 
-public interface AnswersService {
+public interface AnswerService {
     List<Answer> getAnswers();
     Answer getAnswer(Long id);
     void saveAnswer(Answer answer);

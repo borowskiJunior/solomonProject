@@ -35,6 +35,7 @@ public class Lesson {
     @ManyToOne
     @JoinColumn(name = "chapter_id", referencedColumnName = "id")
     @Setter
+    @JsonIgnore
     private Chapter chapter;
 
     public Lesson(String ordinalNumber, String name, String text, Test test, Chapter chapter) {
