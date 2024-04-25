@@ -6,8 +6,11 @@ import com.solomon.backend.solomonproject.repository.QuestionsRepository;
 import com.solomon.backend.solomonproject.service.QuestionsService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 import java.util.List;
@@ -58,4 +61,13 @@ public class QuestionsServiceImpl implements QuestionsService {
         return Collections.emptyList();
     }
 
+    @Override
+    public List<Question> getQuestionListByTestId(Long id) {
+        List<Question> questionList = questionsRepository.findAllByTestId(id);
+        if(questionList.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There are no questions under this test_id");
+        }
+
+        return questionList;
+    }
 }

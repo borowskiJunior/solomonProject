@@ -1,11 +1,14 @@
 package com.solomon.backend.solomonproject.service.impl;
 
+import com.solomon.backend.solomonproject.model.Question;
 import com.solomon.backend.solomonproject.model.Test;
 import com.solomon.backend.solomonproject.repository.TestRepository;
 import com.solomon.backend.solomonproject.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,4 +54,14 @@ public class TestServiceImpl implements TestService {
     public void deleteTest(Long id) {
         testRepository.deleteById(id);
     }
+
+    @Override
+    public Test getTestByLessonId(Long id) {
+        Optional<Test> testByLessonId = testRepository.findByLessonId(id);
+        if(testByLessonId.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There is no test for this lesson_id");
+        }
+        return testByLessonId.get();
+    }
+
 }

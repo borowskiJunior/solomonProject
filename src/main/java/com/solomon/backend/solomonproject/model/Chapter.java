@@ -37,13 +37,13 @@ public class Chapter {
 
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "id")
+    @Setter
     private Course course;
 
-    public Chapter(String ordinalNumber, String name, String description, List<Lesson> lessons, Course course) {
+    public Chapter(String ordinalNumber, String name, String description, Course course) {
         this.ordinalNumber = ordinalNumber;
         this.name = name;
         this.description = description;
-        this.lessons = lessons;
         this.course = course;
     }
 }

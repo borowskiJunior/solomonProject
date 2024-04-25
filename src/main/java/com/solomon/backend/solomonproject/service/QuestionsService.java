@@ -12,4 +12,7 @@ public interface QuestionsService {
     void saveQuestion(Question question);
     void deleteQuestion(Long id);
     List<Answer> getAnswersByQuestionId(Long id);
+
+    //для ани 1
+    List<Question> getQuestionListByTestId(Long id);
 }

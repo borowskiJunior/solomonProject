@@ -11,7 +11,7 @@ import java.util.List;
 
 //надо подумать что делать с маппингом
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/v1/test")
 public class TestController {
 
     private final TestService testService;
@@ -21,9 +21,15 @@ public class TestController {
         this.testService = testService;
     }
 
+//    @GetMapping()
+//    public List<Test> getTests(){
+//        return testService.getTests();
+//    }
+
     @GetMapping()
-    public List<Test> getTests(){
-        return testService.getTests();
+    public Test getTestByLessonId(@RequestParam(name="lesson_id") Long id){
+        return testService.getTestByLessonId(id);
+
     }
 
     @GetMapping("/{id}")

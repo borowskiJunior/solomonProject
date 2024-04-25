@@ -8,44 +8,48 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Duration;
 import java.util.List;
 
+/**
+ * @author Max Borowski
+ */
 @Entity
-@Table(name = "Test")
+@Table(name = "`user`")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Test {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
     private Long id;
 
     @Setter
     private String name;
 
-    //мб Duration
     @Setter
-    private Integer runTime;
+    private String role;
 
-    @OneToOne()
-    @JoinColumn(name = "lesson_id", referencedColumnName = "id")
-    @Setter
-    private Lesson lesson;
-
-    @OneToMany(mappedBy = "test")
-    @JsonIgnore
-    private List<Question> questions;
-
-    @OneToMany(mappedBy = "test")
-    @JsonIgnore
+    @OneToMany(mappedBy = "userId")
     private List<TestSession> testSessions;
 
-    public Test(String name, Integer runTime, Lesson lesson) {
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<UserCourse> userCourses;
+
+    //временные поля
+    @Setter
+    private String login;
+
+    @Setter
+    private String password;
+    //
+
+
+    public User(String name, String role, String login, String password) {
         this.name = name;
-        this.runTime = runTime;
-        this.lesson = lesson;
+        this.role = role;
+        this.login = login;
+        this.password = password;
     }
 }

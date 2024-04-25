@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "Answer_list")
+@Table(name = "Answer")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -19,8 +19,10 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Setter
     private String ans;
+
     @Setter
     private boolean correct;
 
@@ -32,8 +34,9 @@ public class Answer {
     @OneToMany(mappedBy = "answerId")
     private List<TestSessionAnswer> testSessionAnswer;
 
-    public Answer(String ans, boolean correct) {
+    public Answer(String ans, boolean correct, Question question) {
         this.ans = ans;
         this.correct = correct;
+        this.question = question;
     }
 }

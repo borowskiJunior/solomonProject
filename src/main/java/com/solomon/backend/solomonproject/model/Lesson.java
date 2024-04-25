@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -28,15 +29,19 @@ public class Lesson {
     private String text;
 
     @OneToOne(mappedBy = "lesson")
+    @Setter
     private Test test;
 
     @ManyToOne
     @JoinColumn(name = "chapter_id", referencedColumnName = "id")
+    @Setter
     private Chapter chapter;
 
-    public Lesson(String ordinalNumber, String name, String text) {
+    public Lesson(String ordinalNumber, String name, String text, Test test, Chapter chapter) {
         this.ordinalNumber = ordinalNumber;
         this.name = name;
         this.text = text;
+        this.test = test;
+        this.chapter = chapter;
     }
 }

@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -10,7 +11,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "Question_list")
+@Table(name = "Question")
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,12 +27,15 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
     @Setter
-    private Test testId;
+    @JsonIgnore
+    private Test test;
 
     @OneToMany(mappedBy = "question")
+    @JsonIgnore
     private List<Answer> answers;
 
-    public Question(String quest) {
+    public Question(String quest, Test testId) {
         this.quest = quest;
+        this.test = testId;
     }
 }

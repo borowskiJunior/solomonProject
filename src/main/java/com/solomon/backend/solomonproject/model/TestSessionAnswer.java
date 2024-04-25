@@ -27,4 +27,9 @@ public class TestSessionAnswer {
     @JoinColumn(name = "answer_id", referencedColumnName = "id")
     @Setter
     private Answer answerId;
+
+    public TestSessionAnswer(TestSession testSessionId, Answer answerId) {
+        this.testSessionId = testSessionId;
+        this.answerId = answerId;
+    }
 }

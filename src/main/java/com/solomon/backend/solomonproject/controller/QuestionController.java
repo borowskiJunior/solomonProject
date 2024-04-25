@@ -5,15 +5,12 @@ import com.solomon.backend.solomonproject.model.Question;
 import com.solomon.backend.solomonproject.service.QuestionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/test/question")
+@RequestMapping("/v1/question")
 public class QuestionController {
     private final QuestionsService questionsService;
     @Autowired
@@ -21,9 +18,14 @@ public class QuestionController {
         this.questionsService = questionsService;
     }
 
+
+
     @GetMapping()
-    public List<Question> getQuestions(){
+    public List<Question> getQuestionListByTestId(@RequestParam(name = "test_id", required = false) Long id){
+        if(id == null || id == 0){
             return questionsService.getQuestions();
+        }
+        return questionsService.getQuestionListByTestId(id);
     }
 
     @GetMapping("/{id}")

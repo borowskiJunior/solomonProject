@@ -27,7 +27,8 @@ public class TestSession {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Setter
-    private Person personId;
+
+    private User userId;
 
     @ManyToOne
     @JoinColumn(name = "test_id", referencedColumnName = "id")
@@ -39,14 +40,18 @@ public class TestSession {
 
     @Setter
     private LocalDateTime startTime;
+
     @Setter
-    private LocalDateTime finisTime;
+    private LocalDateTime finishTime;
+
     @Setter
     private int attemptNumber;
 
-    public TestSession(LocalDateTime startTime, LocalDateTime finisTime, int attemptNumber) {
+    public TestSession(User userId, Test test, LocalDateTime startTime, LocalDateTime finishTime, int attemptNumber) {
+        this.userId = userId;
+        this.test = test;
         this.startTime = startTime;
-        this.finisTime = finisTime;
+        this.finishTime = finishTime;
         this.attemptNumber = attemptNumber;
     }
 }

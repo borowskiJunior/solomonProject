@@ -19,8 +19,11 @@ public class CourseController {
     }
 
     @GetMapping("/course")
-    public List<Course> getCourses(){
-        return courseService.getCourses();
+    public List<Course> getCourses(@RequestParam(name = "user_id", required = false) Long userId){
+        if(userId == null || userId == 0){
+            return courseService.getCourses();
+        }
+        return courseService.getCoursesByUserId(userId);
     }
 
     @GetMapping("/course/{id}")
