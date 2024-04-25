@@ -77,4 +77,8 @@ public class CourseServiceImpl implements CourseService {
         return courses;
     }
 
+    @Override
+    public Course getAllInformationAboutCourse(Long id) {
+        return null;
+    }
 }

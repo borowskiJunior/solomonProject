@@ -30,8 +30,7 @@ public class Question {
     @JsonIgnore
     private Test test;
 
-    @OneToMany(mappedBy = "question")
-    @JsonIgnore
+    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
     private List<Answer> answers;
 
     public Question(String quest, Test testId) {

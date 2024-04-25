@@ -1,5 +1,7 @@
 package com.solomon.backend.solomonproject.controller;
 
+import com.solomon.backend.solomonproject.dto.AnswerDTO;
+import com.solomon.backend.solomonproject.model.Answer;
 import com.solomon.backend.solomonproject.model.Question;
 
 import com.solomon.backend.solomonproject.service.QuestionService;
@@ -7,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/v1/question")
@@ -29,6 +33,16 @@ public class QuestionController {
 
     }
 
+    @GetMapping("/info")
+    public Map<String, List<AnswerDTO>> getQuestionAndAnswerListByTestId(@RequestParam(name = "test_id", required = false) Long testId, @RequestParam(name = "lesson_id", required = false) Long lessonId){
+        if((testId == null || testId == 0) && lessonId != null){
+            return questionService.getQuestionAndAnswerListByTestIdOrLessonId(lessonId, "lesson");
+        } else if (testId != null && (lessonId == null || lessonId == 0 )) {
+            return questionService.getQuestionAndAnswerListByTestIdOrLessonId(testId, "test");
+        }
+        return new HashMap<>();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Question> getQuestion(@PathVariable("id") Long id){
         Question question = questionService.getQuestion(id);
@@ -36,5 +50,12 @@ public class QuestionController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(question);
+    }
+
+    @GetMapping("/{id}/answer")
+    public List<AnswerDTO> getAnswerListByQuestionId(@PathVariable("id") Long id){
+        // не знаю что тут проверять
+        List<AnswerDTO> answerDTOList = questionService.getAnswerList(id);
+        return answerDTOList;
     }
 }

@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -29,6 +30,7 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "question_id", referencedColumnName = "id")
     @Setter
+    @JsonIgnore
     private Question question;
 
     @OneToMany(mappedBy = "answerId")

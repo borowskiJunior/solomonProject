@@ -22,4 +22,6 @@ public interface CourseService {
 
     List<Course> getCoursesByUserId(Long userId);
 
+    Course getAllInformationAboutCourse(Long id);
+
 }

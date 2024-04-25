@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.service;
 
+import com.solomon.backend.solomonproject.dto.TestDTO;
 import com.solomon.backend.solomonproject.model.Question;
 import com.solomon.backend.solomonproject.model.Test;
 
@@ -15,4 +16,5 @@ public interface TestService {
     // для ани 1
     Test getTestByLessonId(Long id);
 
+    TestDTO getAllDataByTestIdOrLessonId(Long id, String string);
 }
