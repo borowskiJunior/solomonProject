@@ -50,10 +50,10 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findById(userId);
         Optional<Course> courseOptional =  courseRepository.findById(courseId);
         if(userOptional.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong user_id.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with this id was not found");
         }
         if(courseOptional.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong course_id.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Course with this id was not found");
         }
         UserCourse userCourse = new UserCourse(userOptional.get(), courseOptional.get());
 
