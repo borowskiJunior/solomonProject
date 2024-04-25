@@ -70,10 +70,11 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> getCoursesByUserId(Long userId) {
-        if(courseRepository.findCoursesByUserId(userId).isEmpty()){
+        List<Course> courses = courseRepository.findCoursesByUserId(userId);
+        if(courses.isEmpty()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There are no courses under this user_id.");
         }
-        return courseRepository.findCoursesByUserId(userId);
+        return courses;
     }
 
 }

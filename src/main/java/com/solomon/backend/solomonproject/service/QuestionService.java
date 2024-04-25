@@ -6,7 +6,7 @@ import com.solomon.backend.solomonproject.model.Question;
 import java.util.List;
 
 
-public interface QuestionsService {
+public interface QuestionService {
     List<Question> getQuestions();
     Question getQuestion(Long id);
     void saveQuestion(Question question);
