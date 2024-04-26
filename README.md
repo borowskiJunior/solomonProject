@@ -1,2 +1,2 @@
 # solomonProject
-Solomon Project.
+Solomon Project. (в разработке)
