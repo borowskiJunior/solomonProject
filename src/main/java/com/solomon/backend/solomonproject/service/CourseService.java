@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.service;
 
+import com.solomon.backend.solomonproject.dto.CourseDTO;
 import com.solomon.backend.solomonproject.model.Course;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public interface CourseService {
     List<Course> getCourses();
 
-    Course getCourse(Long id);
+    CourseDTO getCourse(Long id);
 
     Course createCourse(Course course);
 
@@ -22,6 +23,6 @@ public interface CourseService {
 
     List<Course> getCoursesByUserId(Long userId);
 
-    Course getAllInformationAboutCourse(Long id);
+    CourseDTO getAllInformationAboutCourse(Long id);
 
 }

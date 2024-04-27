@@ -36,7 +36,6 @@ public class Course {
     @Setter
     private Integer price;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "course")
     private List<Chapter> chapters;
 

@@ -1,17 +1,15 @@
 package com.solomon.backend.solomonproject.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.solomon.backend.solomonproject.model.Lesson;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import com.solomon.backend.solomonproject.model.Question;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Map;
 
 @Setter
 @Getter
+@NoArgsConstructor
 public class TestDTO {
     private Long id;
 
@@ -19,13 +17,12 @@ public class TestDTO {
 
     private Integer runTime;
 
-    private Map<String, List<AnswerDTO>> mapQuestionWithAns;
+    private List<QuestionDTO> questionList;
 
-    public TestDTO(){};
-    public TestDTO(Long id, String name, Integer runTime, Map<String, List<AnswerDTO>> mapQuestionWithAns) {
+    public TestDTO(Long id, String name, Integer runTime, List<QuestionDTO> questionList) {
         this.id = id;
         this.name = name;
         this.runTime = runTime;
-        this.mapQuestionWithAns = mapQuestionWithAns;
+        this.questionList = questionList;
     }
 }

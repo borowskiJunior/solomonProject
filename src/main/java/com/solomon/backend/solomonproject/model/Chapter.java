@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -38,6 +39,7 @@ public class Chapter {
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     @Setter
+    @JsonIgnore
     private Course course;
 
     public Chapter(String ordinalNumber, String name, String description, Course course) {

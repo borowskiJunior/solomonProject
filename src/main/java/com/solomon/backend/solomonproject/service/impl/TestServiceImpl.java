@@ -1,6 +1,10 @@
 package com.solomon.backend.solomonproject.service.impl;
 
+import com.solomon.backend.solomonproject.dto.AnswerDTO;
+import com.solomon.backend.solomonproject.dto.QuestionDTO;
 import com.solomon.backend.solomonproject.dto.TestDTO;
+import com.solomon.backend.solomonproject.model.Answer;
+import com.solomon.backend.solomonproject.model.Lesson;
 import com.solomon.backend.solomonproject.model.Question;
 import com.solomon.backend.solomonproject.model.Test;
 import com.solomon.backend.solomonproject.repository.TestRepository;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,38 +76,40 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public TestDTO getAllDataByTestIdOrLessonId(Long id, String string) {
-        TestDTO testDTO;
+
+        Test findTest = null;
+
         if(string.equals("lesson")){
             Optional<Test> optionalTest = testRepository.findByLessonId(id);
-            if(optionalTest.isEmpty()){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста у урока по данному lesson_id");
-            }
+            if(optionalTest.isEmpty())
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста по данному lesson_id ");
 
-            Test test = optionalTest.get();
-             testDTO = new TestDTO(
-                    test.getId(),
-                    test.getName(),
-                    test.getRunTime(),
-                    questionService.getQuestionAndAnswerListByTestIdOrLessonId(id, string)
-            );
-             return testDTO;
+            findTest = optionalTest.get();
 
         } else if (string.equals("test")){
-
             Optional<Test> optionalTest = testRepository.findById(id);
-            if(optionalTest.isEmpty()){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста у урока по данному test_id");
-            }
+            if(optionalTest.isEmpty())
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста по данному test_id ");
 
-            Test test = optionalTest.get();
-            testDTO = new TestDTO(
-                    test.getId(),
-                    test.getName(),
-                    test.getRunTime(),
-                    questionService.getQuestionAndAnswerListByTestIdOrLessonId(id, string)
-            );
-            return testDTO;
+            findTest = optionalTest.get();
         }
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+        if(findTest == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Тест не найдн по lesson_id или test_id ");
+
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for (Question question : findTest.getQuestions()) {
+            List<AnswerDTO> answerDTOList = new ArrayList<>();
+            for (Answer answer : question.getAnswers()) {
+                answerDTOList.add(new AnswerDTO(answer.getId(), answer.getAns(), answer.isCorrect()));
+            }
+            questionDTOList.add(new QuestionDTO(question.getId(), question.getQuest(), answerDTOList));
+        }
+
+        TestDTO testDTO = new TestDTO(findTest.getId(), findTest.getName(), findTest.getRunTime(), questionDTOList);
+
+
+
+        return testDTO;
     }
 }

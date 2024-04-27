@@ -102,78 +102,78 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
 
-    @Override
-    public Map<String, List<AnswerDTO>> getQuestionAndAnswerListByTestIdOrLessonId(Long id, String string) {
-        Map<String, List<AnswerDTO>> map = new HashMap<>();
-
-        if(string.equals("lesson")){
-            Optional<Lesson> optionalLesson = lessonRepository.findById(id);
-
-            if(optionalLesson.isEmpty()){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет урока по данному lesson_id ");
-            }
-
-            Lesson lesson = optionalLesson.get();
-            Test test = lesson.getTest();
-
-            if(test == null){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста у урока по данному lesson_id");
-            }
-
-            Hibernate.initialize(test.getQuestions());
-
-//            проверка на наличие вопросов у теста думаю не обязательна
-//            if(test.getQuestions().isEmpty()){
-//                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Теста у урока по данному lesson_id");
+//    @Override
+//    public Map<String, List<AnswerDTO>> getQuestionAndAnswerListByTestIdOrLessonId(Long id, String string) {
+//        Map<String, List<AnswerDTO>> map = new HashMap<>();
+//
+//        if(string.equals("lesson")){
+//            Optional<Lesson> optionalLesson = lessonRepository.findById(id);
+//
+//            if(optionalLesson.isEmpty()){
+//                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет урока по данному lesson_id ");
 //            }
-
-            for(Question question : test.getQuestions()){
-                List<AnswerDTO> answerDTOList = new ArrayList<>();
-                for (Answer answer : question.getAnswers()){
-                    answerDTOList.add(new AnswerDTO(answer.getId(), answer.getAns(), answer.isCorrect()));
-                }
-                map.put(question.getQuest(), answerDTOList);
-            }
-
-        } else if (string.equals("test")) {
-            Optional<Test> optionalTest = testRepository.findById(id);
-
-            if(optionalTest.isEmpty()){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста по данному test_id ytn");
-            }
-
-            Test test = optionalTest.get();
-
-            Hibernate.initialize(test.getQuestions());
-
-//            проверка на наличие вопросов у теста думаю не обязательна
-//            if(test.getQuestions().isEmpty()){
-//                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Теста у урока по данному lesson_id");
+//
+//            Lesson lesson = optionalLesson.get();
+//            Test test = lesson.getTest();
+//
+//            if(test == null){
+//                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста у урока по данному lesson_id");
 //            }
-
-            for(Question question : test.getQuestions()){
-                List<AnswerDTO> answerDTOList = new ArrayList<>();
-                for (Answer answer : question.getAnswers()){
-                    answerDTOList.add(new AnswerDTO(answer.getId(), answer.getAns(), answer.isCorrect()));
-                }
-                map.put(question.getQuest(), answerDTOList);
-            }
-
-        }
-
-        return map;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        QuestionServiceImpl that = (QuestionServiceImpl) o;
-        return Objects.equals(questionsRepository, that.questionsRepository) && Objects.equals(lessonRepository, that.lessonRepository);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(questionsRepository, lessonRepository);
-    }
+//
+//            Hibernate.initialize(test.getQuestions());
+//
+////            проверка на наличие вопросов у теста думаю не обязательна
+////            if(test.getQuestions().isEmpty()){
+////                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Теста у урока по данному lesson_id");
+////            }
+//
+//            for(Question question : test.getQuestions()){
+//                List<AnswerDTO> answerDTOList = new ArrayList<>();
+//                for (Answer answer : question.getAnswers()){
+//                    answerDTOList.add(new AnswerDTO(answer.getId(), answer.getAns(), answer.isCorrect()));
+//                }
+//                map.put(question.getQuest(), answerDTOList);
+//            }
+//
+//        } else if (string.equals("test")) {
+//            Optional<Test> optionalTest = testRepository.findById(id);
+//
+//            if(optionalTest.isEmpty()){
+//                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет теста по данному test_id ytn");
+//            }
+//
+//            Test test = optionalTest.get();
+//
+//            Hibernate.initialize(test.getQuestions());
+//
+////            проверка на наличие вопросов у теста думаю не обязательна
+////            if(test.getQuestions().isEmpty()){
+////                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Теста у урока по данному lesson_id");
+////            }
+//
+//            for(Question question : test.getQuestions()){
+//                List<AnswerDTO> answerDTOList = new ArrayList<>();
+//                for (Answer answer : question.getAnswers()){
+//                    answerDTOList.add(new AnswerDTO(answer.getId(), answer.getAns(), answer.isCorrect()));
+//                }
+//                map.put(question.getQuest(), answerDTOList);
+//            }
+//
+//        }
+//
+//        return map;
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        QuestionServiceImpl that = (QuestionServiceImpl) o;
+//        return Objects.equals(questionsRepository, that.questionsRepository) && Objects.equals(lessonRepository, that.lessonRepository);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(questionsRepository, lessonRepository);
+//    }
 }

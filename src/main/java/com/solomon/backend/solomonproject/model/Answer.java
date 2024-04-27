@@ -34,6 +34,7 @@ public class Answer {
     private Question question;
 
     @OneToMany(mappedBy = "answerId")
+    @JsonIgnore
     private List<TestSessionAnswer> testSessionAnswer;
 
     public Answer(String ans, boolean correct, Question question) {

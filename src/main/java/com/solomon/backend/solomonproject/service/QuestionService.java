@@ -17,7 +17,7 @@ public interface QuestionService {
 
     //для ани 1
     List<Question> getQuestionListByTestId(Long id);
-    Map<String, List<AnswerDTO>> getQuestionAndAnswerListByTestIdOrLessonId(Long id, String string);
+//    Map<String, List<AnswerDTO>> getQuestionAndAnswerListByTestIdOrLessonId(Long id, String string);
 
     List<AnswerDTO> getAnswerList(Long id);
 }

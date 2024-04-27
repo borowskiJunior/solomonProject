@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.controller;
 
+import com.solomon.backend.solomonproject.dto.CourseDTO;
 import com.solomon.backend.solomonproject.model.Chapter;
 import com.solomon.backend.solomonproject.model.Course;
 import com.solomon.backend.solomonproject.service.ChapterService;
@@ -29,9 +30,11 @@ public class CourseController {
         }
         return courseService.getCoursesByUserId(userId);
     }
-
+    //меняю
     @GetMapping("/course/{id}")
-    public Course getCourse(@PathVariable("id") Long id){
+    public CourseDTO getCourse(@PathVariable("id") Long id, @RequestParam(value = "all-info", required = false) boolean flag){
+        if(flag)
+            return courseService.getAllInformationAboutCourse(id);
         return courseService.getCourse(id);
     }
 

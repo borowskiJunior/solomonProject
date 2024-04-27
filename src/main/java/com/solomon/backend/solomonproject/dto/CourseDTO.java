@@ -1,7 +1,6 @@
 package com.solomon.backend.solomonproject.dto;
 
 
-import com.solomon.backend.solomonproject.model.Chapter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +19,14 @@ public class CourseDTO {
 
     private Integer price;
 
-    private List<Chapter> chapters;
+    private List<ChapterDTO> chapters;
+
+    public CourseDTO(Long id, String title, String description, String author, Integer price, List<ChapterDTO> chapters) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.author = author;
+        this.price = price;
+        this.chapters = chapters;
+    }
 }

@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Duration;
 import java.util.List;
 
 @Entity
@@ -33,11 +32,9 @@ public class Test {
     @OneToOne()
     @JoinColumn(name = "lesson_id", referencedColumnName = "id")
     @Setter
-    @JsonIgnore
     private Lesson lesson;
 
     @OneToMany(mappedBy = "test")
-    @JsonIgnore
     private List<Question> questions;
 
     @OneToMany(mappedBy = "test")
