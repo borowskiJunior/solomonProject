@@ -32,10 +32,11 @@ public class CourseController {
     }
     //меняю
     @GetMapping("/course/{id}")
-    public CourseDTO getCourse(@PathVariable("id") Long id, @RequestParam(value = "all-info", required = false) boolean flag){
-        if(flag)
-            return courseService.getAllInformationAboutCourse(id);
-        return courseService.getCourse(id);
+    public CourseDTO getCourse(@PathVariable("id") Long id, @RequestParam(value = "all-info", required = false) Boolean flag){
+        if(flag == null || !flag)
+            return courseService.getCourse(id);
+
+        return courseService.getAllInformationAboutCourse(id);
     }
 
     @PostMapping("/course")
