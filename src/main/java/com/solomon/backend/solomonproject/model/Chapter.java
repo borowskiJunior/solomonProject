@@ -25,7 +25,7 @@ public class Chapter {
     private Long id;
 
     @Setter
-    private String ordinalNumber;
+    private Integer ordinalNumber;
 
     @Setter
     private String name;
@@ -42,7 +42,7 @@ public class Chapter {
     @JsonIgnore
     private Course course;
 
-    public Chapter(String ordinalNumber, String name, String description, Course course) {
+    public Chapter(Integer ordinalNumber, String name, String description, Course course) {
         this.ordinalNumber = ordinalNumber;
         this.name = name;
         this.description = description;

@@ -16,7 +16,7 @@ public class LessonDTO {
 
     private Long id;
 
-    private String ordinalNumber;
+    private Integer ordinalNumber;
 
     private String name;
 
@@ -24,7 +24,7 @@ public class LessonDTO {
 
     private TestDTO test;
 
-    public LessonDTO(Long id, String ordinalNumber, String name, String text, TestDTO test) {
+    public LessonDTO(Long id, Integer ordinalNumber, String name, String text, TestDTO test) {
         this.id = id;
         this.ordinalNumber = ordinalNumber;
         this.name = name;

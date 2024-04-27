@@ -55,6 +55,7 @@ public class QuestionController {
     @GetMapping("/{id}/answer")
     public List<AnswerDTO> getAnswerListByQuestionId(@PathVariable("id") Long id){
         // не знаю что тут проверять
+        //TODO - http://localhost:8080/v1/question/5/answer - не обрабатывается
         List<AnswerDTO> answerDTOList = questionService.getAnswerList(id);
         return answerDTOList;
     }

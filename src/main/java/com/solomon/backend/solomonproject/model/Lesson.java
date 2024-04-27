@@ -20,7 +20,7 @@ public class Lesson {
     private Long id;
 
     @Setter
-    private String ordinalNumber;
+    private Integer ordinalNumber;
 
     @Setter
     private String name;
@@ -30,6 +30,7 @@ public class Lesson {
 
     @OneToOne(mappedBy = "lesson")
     @Setter
+    @JsonIgnore
     private Test test;
 
     @ManyToOne
@@ -38,7 +39,7 @@ public class Lesson {
     @JsonIgnore
     private Chapter chapter;
 
-    public Lesson(String ordinalNumber, String name, String text, Test test, Chapter chapter) {
+    public Lesson(Integer ordinalNumber, String name, String text, Test test, Chapter chapter) {
         this.ordinalNumber = ordinalNumber;
         this.name = name;
         this.text = text;

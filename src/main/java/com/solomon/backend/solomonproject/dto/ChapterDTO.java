@@ -13,7 +13,7 @@ import java.util.List;
 public class ChapterDTO {
     private Long id;
 
-    private String ordinalNumber;
+    private Integer ordinalNumber;
 
     private String name;
 
@@ -21,7 +21,7 @@ public class ChapterDTO {
 
     private List<LessonDTO> lessons;
 
-    public ChapterDTO(Long id, String ordinalNumber, String name, String description, List<LessonDTO> lessons) {
+    public ChapterDTO(Long id, Integer ordinalNumber, String name, String description, List<LessonDTO> lessons) {
         this.id = id;
         this.ordinalNumber = ordinalNumber;
         this.name = name;
