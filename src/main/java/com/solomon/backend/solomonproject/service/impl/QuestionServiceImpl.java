@@ -2,9 +2,7 @@ package com.solomon.backend.solomonproject.service.impl;
 
 import com.solomon.backend.solomonproject.dto.AnswerDTO;
 import com.solomon.backend.solomonproject.model.Answer;
-import com.solomon.backend.solomonproject.model.Lesson;
 import com.solomon.backend.solomonproject.model.Question;
-import com.solomon.backend.solomonproject.model.Test;
 import com.solomon.backend.solomonproject.repository.LessonRepository;
 import com.solomon.backend.solomonproject.repository.QuestionRepository;
 import com.solomon.backend.solomonproject.repository.TestRepository;
@@ -14,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

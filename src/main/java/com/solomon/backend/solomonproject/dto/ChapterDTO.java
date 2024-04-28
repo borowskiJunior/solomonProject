@@ -1,6 +1,5 @@
 package com.solomon.backend.solomonproject.dto;
 
-import com.solomon.backend.solomonproject.model.Lesson;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

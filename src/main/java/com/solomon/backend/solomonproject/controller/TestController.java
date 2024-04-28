@@ -1,17 +1,11 @@
 package com.solomon.backend.solomonproject.controller;
 
-import com.solomon.backend.solomonproject.dto.AnswerDTO;
 import com.solomon.backend.solomonproject.dto.TestDTO;
 import com.solomon.backend.solomonproject.model.Test;
 import com.solomon.backend.solomonproject.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 //надо подумать что делать с маппингом
 @RestController

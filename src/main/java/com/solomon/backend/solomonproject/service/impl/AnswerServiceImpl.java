@@ -1,14 +1,11 @@
 package com.solomon.backend.solomonproject.service.impl;
 
 import com.solomon.backend.solomonproject.model.Answer;
-
 import com.solomon.backend.solomonproject.repository.AnswerRepository;
 import com.solomon.backend.solomonproject.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 import java.util.Optional;
