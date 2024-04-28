@@ -55,6 +55,7 @@ public class QuestionServiceImpl implements QuestionService {
         questionsRepository.deleteById(id);
     }
 
+    //Это наверное не нужный метод
     @Transactional
     public List<Answer> getAnswersByQuestionId(Long id){
         Optional<Question> question = questionsRepository.findById(id);
