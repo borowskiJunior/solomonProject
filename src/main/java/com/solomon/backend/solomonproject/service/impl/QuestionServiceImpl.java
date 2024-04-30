@@ -81,12 +81,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<AnswerDTO> getAnswerList(Long id) {
         Optional<Question> question = questionsRepository.findById(id);
-        if(question.isPresent()) {
-            Hibernate.initialize(question.get().getAnswers());
-            if(question.get().getAnswers() == null){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There are no answers under this question_id");
-            }
-        }
+        if(question.isEmpty())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет вопроса по данному question_id");
+
+
         List<Answer> answerList = new ArrayList<>(question.get().getAnswers());
         List<AnswerDTO> answerDTOList = new ArrayList<>();
 
@@ -97,6 +95,9 @@ public class QuestionServiceImpl implements QuestionService {
                     answer.isCorrect()
             ));
         }
+
+        if(answerDTOList.isEmpty())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Нет ответов к данному вопросу");
 
         return answerDTOList;
     }
