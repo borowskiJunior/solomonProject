@@ -1,0 +1,10 @@
+spring.application.name=
+spring.datasource.url=
+
+spring.jpa.hibernate.ddl-auto=
+spring.datasource.username=
+spring.datasource.password=
+spring.jpa.show-sql=
+
+spring.jackson.serialization.indent_output =
+server.error.include-message=
