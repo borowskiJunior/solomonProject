@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User loginUser(User user) {
         Optional<User> userOptional = Optional.ofNullable(userRepository.findByLoginAndPassword(user.getLogin(), user.getPassword()));
         if(userOptional.isEmpty()){

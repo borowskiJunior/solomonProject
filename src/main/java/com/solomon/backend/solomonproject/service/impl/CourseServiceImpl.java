@@ -85,7 +85,7 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getCoursesByUserId(Long userId) {
         List<Course> courses = courseRepository.findCoursesByUserId(userId);
         if(courses.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "There are no courses under this user_id.");
+            return Collections.emptyList();
         }
         return courses;
     }
