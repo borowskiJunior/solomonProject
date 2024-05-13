@@ -34,7 +34,7 @@ public class User {
     private List<TestSession> testSessions;
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
+    //@JsonIgnore
     private List<UserCourse> userCourses;
 
     //временные поля

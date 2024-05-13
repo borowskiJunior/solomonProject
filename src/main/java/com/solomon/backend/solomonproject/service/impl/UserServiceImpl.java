@@ -8,6 +8,7 @@ import com.solomon.backend.solomonproject.repository.UserCourseRepository;
 import com.solomon.backend.solomonproject.repository.UserRepository;
 import com.solomon.backend.solomonproject.service.UserService;
 import lombok.AllArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,8 @@ public class UserServiceImpl implements UserService {
         if(userOptional.isEmpty()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Login or password is not correct");
         }
+//        User getUset = userOptional.get();
+//        Hiber
         return userOptional.get();
     }
 
