@@ -114,7 +114,7 @@ public class CourseServiceImpl implements CourseService {
                     }
                     questionDTOList.add(new QuestionDTO(question.getId(), question.getQuest(), answerDTOList));
                 }
-                TestDTO testDTO = new TestDTO(test.getId(), test.getName(), test.getRunTime(), questionDTOList);
+                TestDTO testDTO = new TestDTO(test.getId(), test.getName(), test.getRunTime(), Collections.emptyList());
                 lessonDTOList.add(new LessonDTO(lesson.getId(), lesson.getOrdinalNumber(), lesson.getName(), lesson.getText(), testDTO));
             }
             chapterDTOList.add(new ChapterDTO(chapter.getId(), chapter.getOrdinalNumber(), chapter.getName(), chapter.getDescription(),lessonDTOList));
