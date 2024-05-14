@@ -43,8 +43,6 @@ public class UserServiceImpl implements UserService {
         if(userOptional.isEmpty()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Login or password is not correct");
         }
-//        User getUset = userOptional.get();
-//        Hiber
         return userOptional.get();
     }
 
@@ -68,4 +66,25 @@ public class UserServiceImpl implements UserService {
         return userCourseRepository.save(userCourse);
     }
 
+    @Override
+    public User getUserById(Long id) {
+        Optional<User> findUser = userRepository.findById(id);
+
+        if(findUser.isEmpty())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Пользователь не найден");
+
+        return findUser.get();
+    }
+
+    @Override
+    @Transactional
+    public User userUpdate(Long id, User userUpdated) {
+
+        if(userRepository.findById(id).isEmpty())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Пользователь не найден");
+
+        userUpdated.setId(id);
+        userRepository.save(userUpdated);
+        return userUpdated;
+    }
 }

@@ -12,4 +12,8 @@ public interface UserService {
     User loginUser(User user);
 
     UserCourse enrollUserToCourse(Long userId, Long courseId);
+
+    User getUserById(Long id);
+
+    User userUpdate(Long id,User userUpdated);
 }

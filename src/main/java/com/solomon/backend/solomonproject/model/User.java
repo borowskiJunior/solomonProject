@@ -1,6 +1,5 @@
 package com.solomon.backend.solomonproject.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -8,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -22,6 +22,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
     private Long id;
 
     @Setter
@@ -29,6 +30,9 @@ public class User {
 
     @Setter
     private String role;
+
+    @Setter
+    private Date dateOfBirth;
 
     @OneToMany(mappedBy = "userId")
     private List<TestSession> testSessions;
@@ -46,9 +50,10 @@ public class User {
     //
 
 
-    public User(String name, String role, String login, String password) {
+    public User(String name, String role,Date dateOfBirth, String login, String password) {
         this.name = name;
         this.role = role;
+        this.dateOfBirth = dateOfBirth;
         this.login = login;
         this.password = password;
     }

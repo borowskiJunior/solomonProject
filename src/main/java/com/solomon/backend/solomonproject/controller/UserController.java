@@ -33,4 +33,15 @@ public class UserController {
         return userService.enrollUserToCourse(userId, courseId);
     }
 
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable("id") Long id){
+        return userService.getUserById(id);
+    }
+
+    @PatchMapping("/{id}")
+    public User update(@PathVariable("id") Long id, @RequestBody User user){
+        return userService.userUpdate(id, user);
+    }
+
+
 }
