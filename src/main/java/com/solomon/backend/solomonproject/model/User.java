@@ -1,5 +1,6 @@
 package com.solomon.backend.solomonproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -35,6 +36,7 @@ public class User {
     private Date dateOfBirth;
 
     @OneToMany(mappedBy = "userId")
+    @JsonIgnore
     private List<TestSession> testSessions;
 
     @OneToMany(mappedBy = "user")

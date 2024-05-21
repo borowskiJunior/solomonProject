@@ -3,14 +3,16 @@ package com.solomon.backend.solomonproject.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "test_session_answer")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TestSessionAnswer {
@@ -27,9 +29,4 @@ public class TestSessionAnswer {
     @JoinColumn(name = "answer_id", referencedColumnName = "id")
     @Setter
     private Answer answerId;
-
-    public TestSessionAnswer(TestSession testSessionId, Answer answerId) {
-        this.testSessionId = testSessionId;
-        this.answerId = answerId;
-    }
 }

@@ -5,9 +5,6 @@ import com.solomon.backend.solomonproject.model.Answer;
 import com.solomon.backend.solomonproject.model.Question;
 
 import java.util.List;
-import java.util.Map;
-
-
 public interface QuestionService {
     List<Question> getQuestions();
     Question getQuestion(Long id);
