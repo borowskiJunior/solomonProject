@@ -4,5 +4,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface TestSessionAnswerService {
-    Long createTestSessionAnswer(Long testSessionAnswerId, Long answerId);
+    Long createTestSessionAnswer(Long testSessionId, Long answerId);
 }
